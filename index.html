@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Application Form</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Job Application Form</h1>
+      <p>Please Fill Out the Form Below to Submit Your Job Application!</p>
+    </header>
+
+    <hr>
+
+    <div class="container">
+      <form action="#" class="form">
+        <div class="column">
+          <div class="input-box">
+            <label for="Name">Name</label><span class="star">*</span>
+            <input type="text" placeholder="First name" />
+            <small>First Name</small>
+          </div>
+          <div class="input-box">
+            <br />
+            <input type="text" placeholder="Last name" />
+            <small>Last Name</small>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="input-box">
+            <label for="email">Email</label><span class="star">*</span>
+            <input type="text" placeholder="ex: myname@example.com" />
+            <small>example@example.com</small>
+          </div>
+          <div class="input-box">
+            <label for="Phone Number">Phone Number</label
+            ><span class="star">*</span>
+            <input type="text" placeholder="000-000-0000" />
+          </div>
+        </div>
+        <br /><br />
+        <div class="gender">
+          <p>Gender</p>
+          <input type="radio" id="male" name="gender" value="male" />
+          <label for="male">Male</label><br />
+          <input type="radio" id="female" name="gender" value="female" />
+          <label for="female">Female</label><br />
+          <input
+            type="radio"
+            id="Transgender"
+            name="gender"
+            value="transgender"
+          />
+          <label for="Transgender"> Transgender</label>
+        </div>
+
+        <br /><br />
+        <div class="current-city">
+          <label for="city">Current City</label>
+          <br />
+          <select name="city" id="city" class="option">
+            <option value="select">Please Select</option>
+            <option value="hyderabad">Hyderabad</option>
+            <option value="Secunderabad">Secunderabad</option>
+            <option value="shamshabad">Shamshabad</option>
+          </select>
+        </div>
+
+        <div class="column">
+          <div class="input-box">
+            <label for="applied-position">Applied Position</label>
+            <input type="text" />
+          </div>
+          <div class="input-box">
+            <label for="date">Earliest Possible Start Date</label>
+            <input type="date" placeholder="MM-DD-YYYY" />
+            <small>Date</small>
+          </div>
+        </div>
+        <br /><br />
+
+        <div class="column">
+          <div class="input-box">
+            <label for="preffered-interview-date">Preferred Interview Date</label>
+            <input type="date" id="datepicker" >
+          </div>
+
+          <div class="input-box">
+            <div class="date-times">
+              <div>
+                <div id="displayDate"></div>
+              </div>
+              <div>
+                <a href=""><img src="./images/circle-chevron-left-solid.svg" alt="" height="20px" width="20px"></a>
+                <a href=""><img src="./images/circle-chevron-right-solid.svg" alt="" height="20px" width="20px"></a>
+              </div>
+            </div>
+            <div class="buttons">
+              <button>11:30 AM</button>
+              <button>12:30 PM</button>
+            </div>
+            <br>
+            <div class="buttons">
+              <button>1:30 PM</button>
+              <button>4:30 PM</button>
+            </div>
+            <br>
+            <div class="buttons">
+              <button>5:30 PM</button>
+              <button>6:30 PM</button>
+            </div>
+            </div>
+          </div>
+
+
+          <div class="upload-resume">
+            <label for="Name">Upload Resume</label><span class="star">*</span>
+            <br/>
+            <br/>
+            <div class="drop-zone">
+              <div>
+                <img
+                  src="./images/cloud-arrow-up-solid.svg"
+                  alt=""
+                  height="60px"
+                  width="60px"
+                />
+              </div>
+              <div>
+                <span class="drop-zone__prompt"
+                  >Upload a File <br /><span class="drag-drop"
+                    >Drag and drop files here</span
+                  ></span
+                >
+                <input type="file" name="myFile" class="drop-zone__input" />
+              </div>
+            </div>
+          </div>
+  
+          <br>
+          <hr>
+  
+          <div  class="submit">
+            <!-- <input type="submit" class="submit-btn" /> -->
+            <button class="submit-btn">Apply</button>
+          </div>
+        </div>
+                
+
+      </form>
+    </div>
+
+    <script src="./js/script.js"></script>
+  </body>
+</html>
