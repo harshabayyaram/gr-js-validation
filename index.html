@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Application Form</title>
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/basic.css" />
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   </head>
@@ -18,42 +18,43 @@
     <hr>
 
     <div class="container">
-      <form action="#" class="form">
+      <form class="form" name = "myForm" >
         <div class="column">
           <div class="input-box">
             <label for="Name">Name</label><span class="star">*</span>
-            <input type="text" placeholder="First name" />
-            <small>First Name</small>
+            <input type="text" id="firstname" name = "firstname" placeholder="First name" />
+            <small>First Name</small><span id="firstnameError"></span>
           </div>
           <div class="input-box">
             <br />
-            <input type="text" placeholder="Last name" />
-            <small>Last Name</small>
+            <input type="text" id="lastname" name = "lastname" placeholder="Last name" />
+            <small>Last Name</small><span id="lastnameError"></span>
           </div>
         </div>
 
         <div class="column">
           <div class="input-box">
             <label for="email">Email</label><span class="star">*</span>
-            <input type="text" placeholder="ex: myname@example.com" />
-            <small>example@example.com</small>
+            <input type="email" id="mail" name="email" placeholder="ex: myname@example.com" />
+            <small>example@example.com</small><span id="emailError"></span>
           </div>
           <div class="input-box">
             <label for="Phone Number">Phone Number</label
-            ><span class="star">*</span>
-            <input type="text" placeholder="000-000-0000" />
+            ><span class="star">*</span><span id="phoneError"></span>
+            <input type="tel" id="phonenumber"name="phonenumber" placeholder="000-000-0000" />
           </div>
         </div>
+
         <br /><br />
         <div class="gender">
           <p>Gender</p>
-          <input type="radio" id="male" name="gender" value="male" />
+          <input type="radio" id="gender" name="gender" value="male" />
           <label for="male">Male</label><br />
-          <input type="radio" id="female" name="gender" value="female" />
+          <input type="radio" id="gender" name="gender" value="female" />
           <label for="female">Female</label><br />
           <input
             type="radio"
-            id="Transgender"
+            id="gender"
             name="gender"
             value="transgender"
           />
@@ -64,22 +65,24 @@
         <div class="current-city">
           <label for="city">Current City</label>
           <br />
-          <select name="city" id="city" class="option">
+          <select name="city" id="city" class="option" name = "city">
             <option value="select">Please Select</option>
             <option value="hyderabad">Hyderabad</option>
             <option value="Secunderabad">Secunderabad</option>
             <option value="shamshabad">Shamshabad</option>
           </select>
+          <span id="cityError"></span>
         </div>
 
         <div class="column">
           <div class="input-box">
-            <label for="applied-position">Applied Position</label>
-            <input type="text" />
+            <label for="appliedposition">Applied Position</label>
+            <input type="text" name="appliedposition" id="appliedposition"/>
+            <span id="positionError"></span>
           </div>
           <div class="input-box">
             <label for="date">Earliest Possible Start Date</label>
-            <input type="date" placeholder="MM-DD-YYYY" />
+            <input type="date" placeholder="MM-DD-YYYY" name="earliest-possible-date" id="earliest-possible-date" />
             <small>Date</small>
           </div>
         </div>
@@ -88,7 +91,7 @@
         <div class="column">
           <div class="input-box">
             <label for="preffered-interview-date">Preferred Interview Date</label>
-            <input type="date" id="datepicker" >
+            <input type="date" id="datepicker" name="preferred-interview-date" >
           </div>
 
           <div class="input-box">
@@ -147,15 +150,16 @@
           <hr>
   
           <div  class="submit">
-            <!-- <input type="submit" class="submit-btn" /> -->
-            <button class="submit-btn">Apply</button>
+            <input type="submit" value="submit" class="submit-btn" id="btn"/>
+            <!-- <button class="submit-btn" >Apply</button> -->
           </div>
         </div>
                 
 
       </form>
     </div>
+    <p id="result"></p>
 
-    <script src="./js/script.js"></script>
+    <script src="./js/main.js"></script>
   </body>
 </html>

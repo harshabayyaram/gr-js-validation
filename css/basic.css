@@ -5,10 +5,10 @@
 }
 
 header{
-    padding: 20px;
+    /* padding: 20px; */
     align-items: center;
     justify-content: center;
-    margin: 20px;
+    /* margin: 20px;   */
 }
 header h1{
     text-align: center;
@@ -95,7 +95,8 @@ form {
   
   
   .drop-zone__input {
-    display: none;
+    /* display: none; */
+    
   }
   
 
