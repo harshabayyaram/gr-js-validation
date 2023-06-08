@@ -8,214 +8,74 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-/*
-function clearErrors(){
-  errors = document.getElementsByClassName('formerror');
-  for(let item of errors){
-    item.innerHTML = "";
-  }
-}
 
+// Get form elements
+const form = document.querySelector('.form');
+const firstnameField = document.getElementById('firstname');
+const lastnameField = document.getElementById('lastname');
+const emailField = document.getElementById('mail');
+const phoneField = document.getElementById('phonenumber');
+const genderField = document.querySelectorAll('input[name="gender"]');
+const cityField = document.getElementById('city');
+const positionField = document.getElementById('appliedposition');
+const startDateField = document.getElementById('earliest-possible-date');
+const interviewDateField = document.getElementById('datepicker');
 
-function seterror(id,error){
-  element = document.getElementById(id);
-  element.getElementsByClassName('formerror')[0].innerHTML = error;
-}
+// Save form data to local storage
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
 
+  const formData = {
+    firstname: firstnameField.value,
+    lastname: lastnameField.value,
+    email: emailField.value,
+    phone: phoneField.value,
+    gender: getSelectedValue(genderField),
+    city: cityField.value,
+    position: positionField.value,
+    startDate: startDateField.value,
+    interviewDate: interviewDateField.value
+  };
 
-function validateForm(){
-  var returnval = true;
-  clearErrors();
-
-  var fname = document.forms['myForm']['fname'].value;
-  if(fname.length<5){
-    seterror("fname","first name cannot be too short")
-    returnval = false;
-  }
-
-  var lname = document.forms['myForm']['lname'].value;
-  if(lname.length<5){
-    seterror("lname","last name cannot be too short")
-    returnval = false;
-  }
-
-  var email = document.forms['myForm']['femail'].value;
-  if(email.length<5){
-    seterror("femail","email cannot be too short")
-    returnval = false;
-  }
-
-  var phone = document.forms['myForm']['phone'].value;
-  if(phone.length!=10){
-    seterror("phone","phone cannot be <10")
-    returnval = false;
-  }
-
-  return returnval;
-}
-
-
-/*
-
-const form = document.getElementById("myForm");
-const fname = document.getElementById("fname");
-const lname = document.getElementById("lname");
-const email = document.getElementById("email");
-const phone = document.getElementById("phone");
-
-
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  validateInputs();
+  localStorage.setItem('formData', JSON.stringify(formData));
+  alert('Form data saved!');
 });
 
-const setError = (element, message) => {
-  const inputControl = element.parentElement;
-  const errorDisplay = inputControl.querySelector(".formerror");
-
-  errorDisplay.innerText = message;
-  inputControl.classList.add("error");
-  inputControl.classList.remove("success");
-};
-
-const setSuccess = (element) => {
-  const inputControl = element.parentElement;
-  const errorDisplay = inputControl.querySelector(".formerror");
-
-  errorDisplay.innerText = "";
-  inputControl.classList.add("success");
-  inputControl.classList.remove("error");
-};
-
-const isValidEmail = (email) => {
-  const re =
-    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(String(email).toLowerCase());
-};
-
-
-const validateInputs = () => {
-  const fnameValue = fname.value.trim();
-  const lnameValue = lname.value.trim();
-  const emailValue = email.value.trim();
-  const phoneValue = password.value.trim();
-
-  if (fnameValue === "") {
-    setError(fname, "Username is required");
-  } else {
-    setSuccess(fname);
+// Retrieve and populate form data on page load
+window.addEventListener('load', function() {
+  const storedData = localStorage.getItem('formData');
+  if (storedData) {
+    const formData = JSON.parse(storedData);
+    firstnameField.value = formData.firstname;
+    lastnameField.value = formData.lastname;
+    emailField.value = formData.email;
+    phoneField.value = formData.phone;
+    setSelectedValue(genderField, formData.gender);
+    cityField.value = formData.city;
+    positionField.value = formData.position;
+    startDateField.value = formData.startDate;
+    interviewDateField.value = formData.interviewDate;
   }
+});
 
-  if (lnameValue === "") {
-    setError(lname, "Username is required");
-  } else {
-    setSuccess(lname);
+// Helper function to get the selected value from a group of radio buttons
+function getSelectedValue(radioGroup) {
+  for (let i = 0; i < radioGroup.length; i++) {
+    if (radioGroup[i].checked) {
+      return radioGroup[i].value;
+    }
   }
-
-  if (emailValue === "") {
-    setError(email, "Email is required");
-  } else if (!isValidEmail(emailValue)) {
-    setError(email, "Provide a valid email address");
-  } else {
-    setSuccess(email);
-  }
-
-  if (phoneValue === "") {
-    setError(phone, "Password is required");
-  } else if (phoneValue.length < 8) {
-    setError(phone, "Password must be at least 8 character.");
-  } else {
-    setSuccess(password);
-  }
-
-};*/
-
-/*
-function validateForm() {
-  var firstname = document.forms["myForm"]["firstname"].value;
-  var lastname = document.forms["myForm"]["lasttname"].value;
-  var email = document.forms["myForm"]["email"].value;
-  var phonenumber = document.forms["myForm"]["phonenumber"].value;
-  var city  = dcocument.forms["myForm"]["city"].value;
-  var appliedposition = document.forms["myForm"]["appliedposition"].value;
-
-  if (firstname === "") {
-    document.getElementById("firstnameError").innerHTML = "Name is required";
-    return false;
-  }
-  if (lastname === "") {
-    document.getElementById("lastnameError").innerHTML = "Name is required";
-    return false;
-  }
-
-  if (email === "") {
-    document.getElementById("emailError").innerHTML = "Email is required";
-    return false;
-  }
-
-  var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  if (!email.match(emailRegex)) {
-    document.getElementById("emailError").innerHTML = "Invalid email format";
-    return false;
-  }
-
-  if (phonenumber === "") {
-    document.getElementById("phoneError").innerHTML =
-      "Mobile number is required";
-    return false;
-  }
-
-  var phoneRegex = /^\d{10}$/;
-  if (!phonenumber.match(phoneRegex)) {
-    document.getElementById("phoneError").innerHTML = "Invalid mobile number";
-    return false;
-  }
-
-  if(city ===""){
-    document.getElementById("cityError").innerHTML = "select city";
-    return false;
-  }
-
-  if (appliedposition === "") {
-    document.getElementById("positionError").innerHTML =
-      "Applied position is required";
-    return false;
-  }
-  */
-
-
-function handleApply(){
-  var fname = document.getElementById("firstname").value;
-  var lname = document.getElementById("lastname").value;
-  var email = document.getElementById("mail").value;
-  var phonenumber = document.getElementById("phonenumber").value;
-  var gender = document.getElementById("gender").value;
-  var city = document.getElementById("city").value;
-  var appliedposition = document.getElementById("appliedposition").value;
-  var earliestdate = document.getElementById("earliest-possible-date").value;
-  var preferredinterviewdate = document.getElementById("datepicker").value;
-
-  localStorage.setItem("1 first name", fname);
-  localStorage.setItem("2 last name", lname);
-  localStorage.setItem("3 email", email);
-  localStorage.setItem("4 phone number", phonenumber);
-  localStorage.setItem("5 gender", gender);
-  localStorage.setItem("6 city", city);
-  localStorage.setItem("7 applied position", appliedposition);
-  localStorage.setItem("8 earliest possible start date", earliestdate);
-  localStorage.setItem("9 preferred interview date", preferredinterviewdate);
-
-  // console.log(localStorage.setItem("firstName"));
-  document.getElementById('result').innerHTML = localStorage.getItem(fname);
-
-  // Show success popup
-  alert("You have successfully applied for the Full-Stack Developer job");
+  return null;
 }
-var applyButton = document.getElementById("btn");
-applyButton.addEventListener("click", handleApply);
 
-
-
-
+// Helper function to set the selected value for a group of radio buttons
+function setSelectedValue(radioGroup, value) {
+  for (let i = 0; i < radioGroup.length; i++) {
+    if (radioGroup[i].value === value) {
+      radioGroup[i].checked = true;
+      break;
+    }
+  }
+}
 
 
