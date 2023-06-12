@@ -58,7 +58,7 @@ window.addEventListener('load', function() {
   }
 });
 
-// Helper function to get the selected value from a group of radio buttons
+//get the selected value from a group of radio buttons
 function getSelectedValue(radioGroup) {
   for (let i = 0; i < radioGroup.length; i++) {
     if (radioGroup[i].checked) {
@@ -68,7 +68,7 @@ function getSelectedValue(radioGroup) {
   return null;
 }
 
-// Helper function to set the selected value for a group of radio buttons
+// set the selected value for a group of radio buttons
 function setSelectedValue(radioGroup, value) {
   for (let i = 0; i < radioGroup.length; i++) {
     if (radioGroup[i].value === value) {
@@ -79,3 +79,58 @@ function setSelectedValue(radioGroup, value) {
 }
 
 
+
+// validations 
+
+
+
+// Regular expressions for validation
+const namecond = /^[A-Za-z\s]{2,50}$/;
+const emailcond = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const mobilecond = /^\d{10}$/;
+const positioncond = /^[a-zA-Z0-9\s\W]{1,50}$/;
+
+// Function to validate form fields
+function validateForm() {
+  const firstname = document.getElementById('firstname').value;
+  const lastname = document.getElementById('lastname').value;
+  const email = document.getElementById('mail').value;
+  const phone = document.getElementById('phonenumber').value;
+  const position = document.getElementById('appliedposition').value;
+
+  if (!namecond.test(firstname)) {
+    alert('Please enter a valid first name');
+    return false;
+  }
+
+  if (!namecond.test(lastname)) {
+    alert('Please enter a valid last name');
+    return false;
+  }
+
+  if (!emailcond.test(email)) {
+    alert('Please enter a valid email address');
+    return false;
+  }
+
+  if (!mobilecond.test(phone)) {
+    alert('Please enter a valid phone number (e.g., 000-000-0000)');
+    return false;
+  }
+
+  if (!positioncond.test(position)) {
+    alert('Please enter a valid applied position');
+    return false;
+  }
+
+  return true;
+}
+
+
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  if (validateForm()) {
+    form.submit();
+  }
+});
